@@ -1,4 +1,4 @@
-try: project.o
-	cc project.o -o project
-main.o: project.c
-	cc -Wall -c project.c
+try :
+	cc *.h
+	cc *.c -c
+	cc *.o -o project
