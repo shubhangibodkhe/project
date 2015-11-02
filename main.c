@@ -9,30 +9,19 @@ FILE *fp, *ft;
 char another, choice;
 char empname[100];
 long int recsize; 
+//void mainmenu();
 
-
-int main(){
- fp = fopen("EMPF.DAT","rb+");
- 	if(fp == NULL){
-        fp = fopen("EMPF.DAT","wb+");
-        	if(fp == NULL){
-            printf("Cannot open file");
-	   return 1;
-        }
-    }
-
-    
-    recsize = sizeof(e);
-
-   
-while(1){
-        
-        printf("1. Add Record\n");  
+void mainmenu(){
+	
+	while(1){
+	system("clear");
+	printf("1. Add Record\n");  
         printf("2. List Records\n"); 
         printf("3. Delete Records\n");
 	printf("4. Modify Records\n"); 
-        printf("5. Exit\n"); 
-        printf("Your Choice:\n "); 
+	printf("5. Search Records\n");
+        printf("6. Exit\n"); 
+        printf("Enter Your Choice:\n "); 
 	scanf("%c",&choice);
         
         switch(choice){
@@ -52,11 +41,32 @@ while(1){
 		modify();
 		break;
 
-        case '5':
-            fclose(fp);  
-            
-	    return 0;        
+	case '5':
+		search();
+		break;
+
+        case '6':
+		system("clear");
+		exit(0);
+		fclose(fp);  
+		break;   
+		     
 	}
     }
-    return 0;
 }
+
+int main(){
+ fp = fopen("emp1.txt","rb+");
+ 	if(fp == NULL){
+        fp = fopen("emp1.txt","wb+");
+        	if(fp == NULL){
+            printf("Cannot open file");
+	   return 1;
+        }
+    }
+
+	recsize = sizeof(e);
+	mainmenu();
+	return 0;
+}
+
