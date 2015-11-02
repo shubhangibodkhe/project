@@ -8,30 +8,234 @@ FILE *fp, *ft;
 char another, choice;
 char empname[100];
 long int recsize; 
-
+int emp_id[100];
+int flag;
+int d, y;
+char s[100];
 
 void delete(){
-another = 'y';
-            while(another == 'y')
-            {
-                printf("\nEnter name of employee to delete: ");
-                scanf("%s",empname);
-                ft = fopen("TempF.dat","wb");  
-                rewind(fp); 
-                while(fread(&e,recsize,1,fp) == 1) 
-                {
-                    if(strcmp(e.name,empname) != 0)  
-                    {
-                        fwrite(&e,recsize,1,ft); 
-                    }
-                }
-                fclose(fp);
-                fclose(ft);
-                remove("EMPF.DAT"); 
-                rename("TempF.dat","EMPF.DAT"); 
-                fp = fopen("EMPF.DAT", "rb+");
-                printf("You can also perform another operation:\n");
-		scanf("%c",&another);
-              
-            }
+		another='y';
+		printf("\n****** User have the choice to delete the records ******\n\n");
+		printf("1.Delete by ID:\n");
+		printf("2.Delete by Age:\n");
+		printf("3.Delete by Salary:\n");
+		printf("4.Delete by year of experience:\n");		
+		printf("Enter your choice:\n");
+
+                while(another == 'y'){
+		scanf("%c",&choice);
+
+		switch(choice){
+
+		case '1' :
+
+		system("clear");
+		printf("Enter the employee ID to delete:");
+		scanf("%d",&d);
+		fp=fopen("emp1.txt","rb+");
+		rewind(fp);
+		while(fread(&e,sizeof(e),1,fp)==1) {
+			if(e.emp_id==d) {
+				printf("The employee record is available\n");
+				printf("Employee name is %s\n",e.name);
+				
+				flag=10;
+	  	  	}
+		}
+		if(flag!=10) {
+			printf("No record is found modify the search");
+			mainmenu();
+		}
+		if(flag==10) {
+			printf("Do you want to delete it?(Y/N) \n press 1 for YES and 2 for NO:");
+			scanf("%d",&y);
+			if(y==1) {
+				ft=fopen("temp.txt","w+"); 
+				rewind(fp);
+				while(fread(&e,sizeof(e),1,fp)==1) {
+					if(e.emp_id!=d){
+						fseek(ft,0,SEEK_CUR);
+						fwrite(&e,sizeof(e),1,ft); 
+		    			}                              
+				}
+				fclose(ft);
+				fclose(fp);
+				remove("emp1.txt");
+				rename("temp.txt","emp1.txt"); 
+				//fp=fopen("library.dat","rb+");   
+				if(flag==10) {
+					printf("The record is sucessfully deleted\n");
+					printf("Delete another record?(Y/N) \n press 1 for YES and 2 for NO\n");	
+					scanf("%d",&y);
+					if(y==2) 
+		        			mainmenu();	
+					else 
+						delete();
+				}
+				}
+				printf("You can also perform another operation:\n");
+				scanf("%c",&another);
+				break;
+				
+				
+
+		case '2' :
+
+		system("clear");
+		printf("Enter the employee Age to delete:");
+		scanf("%d",&d);
+		fp=fopen("emp1.txt","rb+");
+		rewind(fp);
+		while(fread(&e,sizeof(e),1,fp)==1) {
+			if(e.age==d) {
+				printf("The employee record is available\n");
+				printf("Employee name is %s\n",e.name);
+				//printf("Rack No. is    %d\n",a.rackno);
+				flag=10;
+	  	  	}
+		}
+		if(flag!=10) {
+			printf("No record is found modify the search");
+			mainmenu();
+		}
+		if(flag==10) {
+			printf("Do you want to delete it?(Y/N) \n press 1 for YES and 2 for NO:");
+			scanf("%d",&y);
+			if(y==1) {
+				ft=fopen("temp.txt","w+"); 
+				rewind(fp);
+				while(fread(&e,sizeof(e),1,fp)==1) {
+					if(e.age!=d){
+						fseek(ft,0,SEEK_CUR);
+						fwrite(&e,sizeof(e),1,ft); 
+		    			}                              
+				}
+				fclose(ft);
+				fclose(fp);
+				remove("emp1.txt");
+				rename("temp.txt","emp1.txt"); 
+				//fp=fopen("library.dat","rb+");   
+				if(flag==10) {
+					printf("The record is sucessfully deleted\n");
+					printf("Delete another record?(Y/N) \n press 1 for YES and 2 for NO\n");	
+					scanf("%d",&y);
+					if(y==2) 
+		        			mainmenu();	
+					else 
+						delete();
+				}
+				}
+				printf("You can also perform another operation:\n");
+				scanf("%c",&another);
+				break; 
+
+		case '3' :
+
+		system("clear");
+		printf("Enter the employee Salary to delete:");
+		scanf("%d",&d);
+		fp=fopen("emp1.txt","rb+");
+		rewind(fp);
+		while(fread(&e,sizeof(e),1,fp)==1) {
+			if(e.salary==d) {
+				printf("The employee record is available\n");
+				printf("Employee name is %s\n",e.name);
+				//printf("Rack No. is    %d\n",a.rackno);
+				flag=10;
+	  	  	}
+		}
+		if(flag!=10) {
+			printf("No record is found modify the search");
+			mainmenu();
+		}
+		if(flag==10) {
+			printf("Do you want to delete it?(Y/N) \n press 1 for YES and 2 for NO:");
+			scanf("%d",&y);
+			if(y==1) {
+				ft=fopen("temp.txt","w+"); 
+				rewind(fp);
+				while(fread(&e,sizeof(e),1,fp)==1) {
+					if(e.salary!=d){
+						fseek(ft,0,SEEK_CUR);
+						fwrite(&e,sizeof(e),1,ft); 
+		    			}                              
+				}
+				fclose(ft);
+				fclose(fp);
+				remove("emp1.txt");
+				rename("temp.txt","emp1.txt"); 
+				//fp=fopen("library.dat","rb+");   
+				if(flag==10) {
+					printf("The record is sucessfully deleted\n");
+					printf("Delete another record?(Y/N) \n press 1 for YES and 2 for NO\n");	
+					scanf("%d",&y);
+					if(y==2) 
+		        			mainmenu();	
+					else 
+						delete();
+				}
+				}
+				printf("You can also perform another operation:\n");
+				scanf("%c",&another);
+				break; 
+	
+	
+		case '4' :
+
+		system("clear");
+		printf("Enter the employee Year of Experience to delete:");
+		scanf("%d",&d);
+		fp=fopen("emp1.txt","rb+");
+		rewind(fp);
+		while(fread(&e,sizeof(e),1,fp)==1) {
+			if(e.year_of_experience==d) {
+				printf("The employee record is available\n");
+				printf("Employee name is %s\n",e.name);
+				//printf("Rack No. is    %d\n",a.rackno);
+				flag=10;
+	  	  	}
+		}
+		if(flag!=10) {
+			printf("No record is found modify the search");
+			mainmenu();
+		}
+		if(flag==10) {
+			printf("Do you want to delete it?(Y/N) \n press 1 for YES and 2 for NO:");
+			scanf("%d",&y);
+			if(y==1) {
+				ft=fopen("temp.txt","w+"); 
+				rewind(fp);
+				while(fread(&e,sizeof(e),1,fp)==1) {
+					if(e.year_of_experience!=d){
+						fseek(ft,0,SEEK_CUR);
+						fwrite(&e,sizeof(e),1,ft); 
+		    			}                              
+				}
+				fclose(ft);
+				fclose(fp);
+				remove("emp1.txt");
+				rename("temp.txt","emp1.txt"); 
+				//fp=fopen("library.dat","rb+");   
+				if(flag==10) {
+					printf("The record is sucessfully deleted\n");
+					printf("Delete another record?(Y/N) \n press 1 for YES and 2 for NO\n");	
+					scanf("%d",&y);
+					if(y==2) 
+		        			mainmenu();	
+					else 
+						delete();
+				}
+				}
+				printf("You can also perform another operation:\n");
+				scanf("%c",&another);
+				break; 
+				}
+			
+			}
+	
+		}
+		
+	}
+}
+}
 }
