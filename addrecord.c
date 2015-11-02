@@ -8,15 +8,22 @@ FILE *fp, *ft;
 char another, choice;
 char empname[100];
 long int recsize; 
-
+int t;
+int already(int t);
 
 void add(){
-fseek(fp,0,SEEK_END); 
-
-            another = 'y';
-            while(another == 'y')  {
+	fp=fopen("emp1.txt","ab+");
+	fseek(fp,0,SEEK_END); 
+	another = 'y';
+        while(another == 'y')  {
 		printf("Enter employee id:\n");
-		scanf("%d",&e.emp_id);
+		scanf("%d",&t);
+
+		if(already(t) == 0){
+		printf("\nThe employee id already exists\n\n");
+		mainmenu();
+		}
+		e.emp_id=t;		
 
                 printf("Enter name:\n");
                 scanf("%s",e.name);
@@ -32,6 +39,9 @@ fseek(fp,0,SEEK_END);
 
 		printf("Enter year of experience:\n");
 		scanf("%d",&e.year_of_experience);
+	
+		printf("Enter Employee post:\n");
+                scanf("%s",e.post);
 
 		/*printf("Enter Date of birth:\n");
 		scanf("%d",&e.DOB);
@@ -45,3 +55,11 @@ fseek(fp,0,SEEK_END);
             }
 }
 
+int already(int t){
+	rewind(fp);
+	while(fread(&e,sizeof(e),1,fp)==1)
+	if(e.emp_id==t){
+		return 0;
+	}
+      return 1; 
+}
