@@ -4,6 +4,7 @@
 #include<limits.h>
 #include "emp.h"
 
+
 FILE *fp, *ft; 
 char another, choice;
 char empname[100];
@@ -17,6 +18,7 @@ void modify(){
                 printf("Enter the employee name to modify: ");
                 scanf("%s", empname);
                 rewind(fp);
+		fp=fopen("emp1.txt","rb+");
                 while(fread(&e,recsize,1,fp)==1)  
                 {
                     if(strcmp(e.name,empname) == 0)  
@@ -41,6 +43,9 @@ void modify(){
 
 		printf("Enter year of experience:\n");
 		scanf("%d",&e.year_of_experience);
+
+		printf("Enter Employee post:\n");
+		scanf("%s",e.post);
 
 		/*printf("Enter Date of birth:\n");
 		scanf("%d",&e.DOB);
