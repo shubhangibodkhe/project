@@ -1,0 +1,10 @@
+Title of Project is  Employee Management System.
+
+Name - Shubhangi Navnath Bodkhe.
+
+MID ID - 141508003
+
+Project Information - 
+
+This project is important to store Employee Details. In this Project Employee ID , Name , Address , Age , Year of experience , Salary and Post etc data can be stored. This system can Add , Delete , Modify , Search and Display the records.This system can also display records by Employee ID , Name , Address , Age , Year of experience , Salary and Post etc.This project contains emp1.txt binary file to store the employee data.Also project contains addrecord.c , deleterecord.c , modifyrecord.c , displayrecord.c , serachrecord.c etc files tp perform all operations. By this system , user can easily store emplyee Details.
+
